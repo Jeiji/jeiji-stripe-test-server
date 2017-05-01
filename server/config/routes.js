@@ -62,7 +62,7 @@ function hatchwerk( filename , detail , callback ){
       }
 
       // console.log('\nfinish square' ,` starting from ( ${ xStart } , ${ yStart } ) down to ( ${ x-1  } , ${ y-1  } ) `);
-      console.log(sqVal);
+      // console.log(sqVal);
       if (sqVal > 6) {
         console.log('GARBAGE');
         if( findAvg( avgs ) < 170 && findAvg( avgs ) > 85 ){
@@ -139,6 +139,7 @@ module.exports = function( app ){
     // req.body will hold the text fields, if there were any
     console.log('\n\nTRYING TO UPLOAD');
     console.log(req.body);
+    console.log('File...',req.file);
     if (!req.file) {
       res.json({'err':'No file!'})
       return
