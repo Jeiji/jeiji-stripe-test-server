@@ -49,6 +49,6 @@ require("./server/config/routes.js")(app);
 
 //---------------- SERVER LISTENER -------------------
 // const port = 8000;
-app.listen( app.get('port')  , function(){
-  console.log(`Listening to port ${app.get('port')} for 'BucketShare'`);
+app.listen( process.env.PORT || 5000  , function(){
+  console.log(`Listening to port ${process.env.PORT} for 'BucketShare'`);
 });
