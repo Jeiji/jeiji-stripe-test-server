@@ -48,7 +48,7 @@ require('./server/config/mongoose.js');
 require("./server/config/routes.js")(app);
 
 //---------------- SERVER LISTENER -------------------
-const port = 8000;
-app.listen( app.get('port') || port , function(){
+// const port = 8000;
+app.listen( app.get('port')  , function(){
   console.log(`Listening to port ${app.get('port')} for 'BucketShare'`);
 });
