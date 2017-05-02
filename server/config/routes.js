@@ -15,6 +15,22 @@ const storage = multer.diskStorage({
                 });
 const upload = multer({ storage: storage });
 const newaAsciiPortrait = '';
+//RandInt
+function randInt( min , max ){
+    if ( !max ){
+      max = min;
+      min = 0;
+    }
+    return ( Math.floor( Math.random() * ( ( max ) - min ) + min ) )
+}
+
+// Create random character
+function randoChar(){
+  const chars = ['@','#','$','%','&','W','M','G','K','X','R'];
+  // const chars = ['@','#','$','%','&','W','M','G','K','X','R','8','を','ち','ぞ','あ','ば','ほ','チ','ヲ','ジ','ツ'];
+  // const chars = ['&#xFF75','&#xFF81' , '&#xFF82' , '&#xFFA6' , '&#xFFAC' , '&#xFFBE'];
+  return chars[ randInt( chars.length ) ]
+}
 
 // Check for bein' logged in
 function ifLogged( req , res ){
@@ -36,6 +52,7 @@ function hatchwerk( filename , detail , callback ){
         avgs = [],
         asciiPic = '<p>',
         sqVal = parseInt(detail),
+        heightRedux = Math.ceil( sqVal * 1.1 ), // Account for ASCII char height
         xStart = 0,
         yStart = 0;
 
@@ -45,7 +62,7 @@ function hatchwerk( filename , detail , callback ){
 
 
     while( (pixels.get( 0 , yStart+( sqVal-1 ) , 0 )) != undefined ){
-      for (var y = yStart; y < yStart+sqVal; y+=sqVal){
+      for (var y = yStart; y < yStart+heightRedux; y+=heightRedux){
         for (var x = xStart; x < xStart+sqVal; x+=sqVal){
           // console.log(x , y);
           for (var z = 0; z < 4; z++){
@@ -68,7 +85,7 @@ function hatchwerk( filename , detail , callback ){
         if( findAvg( avgs ) < 170 && findAvg( avgs ) > 85 ){
           asciiPic += '-'
         }else if ( findAvg( avgs ) <= 85 ) {
-          asciiPic += '@'
+          asciiPic += randoChar();
         }else{
           asciiPic += '&nbsp;'
         }
@@ -78,7 +95,7 @@ function hatchwerk( filename , detail , callback ){
         }else if( findAvg( avgs ) <= 127.5 && findAvg( avgs ) > 63.75 ){
           asciiPic += '='
         }else if ( findAvg( avgs ) <= 63.75 ) {
-          asciiPic += '@'
+          asciiPic += randoChar();
         }else{
           asciiPic += '&nbsp;'
         }
@@ -96,7 +113,7 @@ function hatchwerk( filename , detail , callback ){
         asciiPic += '</p><p>';
       }else{
         // console.log('Keep on same row');
-        yStart = y - sqVal;
+        yStart = y - heightRedux;
         xStart = x
       }
       // console.log(xStart , yStart);
