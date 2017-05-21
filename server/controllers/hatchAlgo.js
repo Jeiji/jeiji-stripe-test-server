@@ -1,5 +1,7 @@
 const gpix = require('get-pixels');
 
+
+
 function hatchAlgo(){
   //RandInt
   function randInt( min , max ){
@@ -13,7 +15,7 @@ function hatchAlgo(){
   // Create random character
   function randoChar(){
     // const chars = ['@','?','$','%','&','&#x25B2','&#x0411','&#x0414','&#x042F','&#x0429','&#x0416','&#x042D'];
-    const chars = ['@','#','$','%','&','S','T','E','V','E','U','R','K','E','L','&#x25B2'];
+    const chars = ['@','#','$','%','&','Y','E','S','H','U','A','&#x25B2'];
     // const chars = ['@','H','T','C','H','H@ATCH_','@','H','T','C','H','@','H','T','C','H','@','H','T','C','H','@','H','T','C','H'];
     // const chars = ['@','#','$','%','&','W','M','G','K','X','R','8','を','ち','ぞ','あ','ば','ほ','チ','ヲ','ジ','ツ'];
     // const chars = ['&#xFF75','&#xFF81' , '&#xFF82' , '&#xFFA6' , '&#xFFAC' , '&#xFFBE'];
@@ -35,11 +37,12 @@ function hatchAlgo(){
       res.redirect('/');
     }
   }
-  this.hatchwerk = function( filename , detail , callback ){
-    console.log(filename);
-    gpix("/Users/jamesbruno/Dropbox/_code/hatchwerk/client/" + filename + '.jpg', function(err, pixels) {
+  this.hatchwerk = function( file , detail , callback ){
+    console.log(file);
+    gpix( file.buffer, file.mimetype , function(err, pixels) {
       if(err) {
-        console.log("Bad image path")
+        console.log("Bad image path");
+        console.log(err);
         return
       }
       // console.log("got pixels", pixels.shape.slice())
