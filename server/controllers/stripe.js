@@ -50,6 +50,7 @@ function stripeCtrl(){
     }, function(err, charge) {
         if (err) {
             response.json(err).end();
+            console.log(`This is the error: `, err);
         }else{
             response.json(charge).end();
         }
