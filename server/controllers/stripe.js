@@ -45,7 +45,7 @@ function stripeCtrl(){
     stripe.charges.create({
         amount: 2000,
         currency: "usd",
-        source: "tok_1AQWISIDmXEVhqdLuEnhuSk9", // obtained with Stripe.js
+        source: "tok_visa", // obtained with Stripe.js
         description: "Charge for aiden.thompson@example.com"
     }, function(err, charge) {
         if (err) {
