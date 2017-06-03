@@ -41,19 +41,23 @@ function stripeCtrl(){
   };
 
   this.chrgPayment = function( request , response ){
-    console.log(`\n\n\nTHIS IS THE TOKEN\n`, request.body);
+    console.log(`\n\n\nTHIS IS THE REQUEST\n`, request.body);
     stripe.charges.create({
         amount: 2000,
         currency: "usd",
         source: "tok_visa", // obtained with Stripe.js
         description: "Charge for aiden.thompson@example.com"
     }, function(err, charge) {
-        if (err) {
-            response.json(err).end();
-            console.log(`This is the error: `, err);
-        }else{
-            response.json(charge).end();
-        }
+            if (err) {
+                response.json(err).end();
+                console.log(`This is the error: `, err);
+            }else{
+                let newRes = {
+                  "charge" : charge,
+                  "msg-to-usr" : `\n\nThis is the message back to the user`
+                }
+                response.json( newRes ).end();
+            }
     });
   };
 
