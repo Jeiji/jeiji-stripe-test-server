@@ -15,7 +15,7 @@ module.exports = function( app ){
       stripeCtrl.chngDefPaymnt();
   });
 
-  app.get( '/charge' , function( req , res ){
+  app.post( '/charge' , function( req , res ){
       stripeCtrl.chrgPayment( req , res );
   });
 
