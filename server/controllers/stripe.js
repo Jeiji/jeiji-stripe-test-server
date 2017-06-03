@@ -41,7 +41,7 @@ function stripeCtrl(){
   };
 
   this.chrgPayment = function( request , response ){
-    console.log(`\n\n\nTHIS IS THE TOKEN\n${ request.body }`);
+    console.log(`\n\n\nTHIS IS THE TOKEN\n`, request.body);
     stripe.charges.create({
         amount: 2000,
         currency: "usd",
