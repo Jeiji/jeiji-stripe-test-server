@@ -7,15 +7,7 @@ const session = require('express-session');
 const multer  = require('multer');
 const upload = multer({ dest: './client/assets' });
 
-
-
-
 const app = express();
-
-
-
-
-
 
 app.use( bodyParser.urlencoded( { extended : true }));
 app.use(bodyParser.json());
@@ -23,6 +15,7 @@ app.use(bodyParser.json());
 //---------------- STATIC FILES -------------------
 app.use( express.static( path.join( __dirname , './client')));
 app.use( express.static( path.join( __dirname , './client/partials')));
+app.use( express.static( path.join( __dirname , './server/controllers')));
 app.use( express.static( path.join( __dirname , './bower_components')));
 app.use( express.static( path.join( __dirname , './node_modules')));
 app.set('views', __dirname + '/client/partials/');
@@ -36,13 +29,9 @@ app.use(session({
   cookie: { secure: false , httpOnly: false , maxAge : 36000000 }
 }))
 
-app.get('/', function(req, res, next) {
-  var sesh = req.session
-  console.log(`fart`);
-})
 
 //---------------- DATABASE -------------------
-require('./server/config/mongoose.js');
+// require('./server/config/mongoose.js');
 
 //---------------- ROUTES -------------------
 require("./server/config/routes.js")(app);
@@ -50,5 +39,5 @@ require("./server/config/routes.js")(app);
 //---------------- SERVER LISTENER -------------------
 const port = 7000;
 app.listen( process.env.PORT || port  , function(){
-  console.log(`Listening to port ${process.env.PORT} or ${port} for 'H@TCHWERK'`);
+  console.log(`Listening to port ${process.env.PORT} or ${port} for 'Stripe-Test-Server'`);
 });

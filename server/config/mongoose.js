@@ -22,7 +22,7 @@ var mongoose = require('mongoose'),
 /*
 *  database information
 */
-    dbURI = 'mongodb://localhost/hatchwerk';
+    dbURI = 'mongodb://localhost/stripe-test-server';
 /*
 * Connect to the database
 */
